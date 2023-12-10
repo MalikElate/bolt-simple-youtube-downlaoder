@@ -1,0 +1,150 @@
+.body {
+    color: white;
+    background-color: #1F1F1F;
+    font-family: sans-serif;
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column; 
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox {
+    background-color: #1F1F1F;
+    border: 1px solid #FFF;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #2C8CEA;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 300px;
+}
+
+a {
+    color: #2C8CEA
+}
+
+.footerP {
+    position: absolute;
+    bottom: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+input {
+    background-color: #1F1F1F;
+    border: 1px solid #FFF;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+    max-width: 300px;
+}
+
+.downloadBtn {
+    background-color: #fff;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 320px;
+}
+
+.urlInput {
+    background-color: #1F1F1F;
+    border: 1px solid #FFF;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.changeFolderBtn {
+    background-color: #fff;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.text {
+    color: white;
+    font-weight: bolder;
+}
+
+@keyframes letter {
+    0%{
+        fontSize: 30px
+    }
+    50% {
+        fontSize: 40px
+    }
+
+    100% {
+        fontSize: 30px
+    }
+}
+
+.letter {
+    animation: letter 1s infinite;
+    animation-duration: 6s; 
+}
+
+.letter1 {
+    animation-delay: 0s,
+}
+
+.letter2 {
+    animation-delay: -0.9s,
+}
+
+.letter3 {
+    animation-delay: -0.8s;
+}
+
+.letter4 {
+    animation-delay: -0.7s;
+}
+
+.letter5 {
+    animation-delay: -0.6s;
+}
+
+.letter6 {
+    animation-delay: -0.5s;
+}
+
+.letter7 {
+    animation-delay: -0.4s;
+}
+
+.letter8 {
+    animation-delay: -0.3s;
+}
+
+.letter9 {
+    animation-delay: -0.2s;
+}
+
+.letter10 {
+    animation-delay: -0.1s;
+}
