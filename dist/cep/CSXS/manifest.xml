@@ -39,8 +39,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         <Menu>Simple Youtube Downloader</Menu>
         <Geometry>
           <Size>
-            <Width>600</Width>
-            <Height>650</Height>
+            <Width>575</Width>
+            <Height>520</Height>
           </Size>
         </Geometry>
         <Icons>

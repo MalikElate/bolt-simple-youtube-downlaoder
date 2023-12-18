@@ -50,28 +50,13 @@ var config = {
 
 var ns = config.id;
 
-var example = function example(path, fileName) {
-  var n = "".concat(path, "/").concat(fileName, ".mp4");
-  alert("hello");
-  var tesdt = app.project.importFiles([n], false, app.project.rootItem, false);
-  alert("tesdt: ".concat(tesdt));
-  var insertIntoTrack = 0;
-  var seq = app.project.activeSequence;
-  var availibleClips = app.project.rootItem.children;
-
-  // Loop through the array to find the first object with name === "test"
-  var findFistProjectItem = function findFistProjectItem(clips) {
-    for (var i = 0; i < clips.numItems - 1; i++) {
-      alert(availibleClips[i].name);
-      var currentObject = availibleClips[i];
-      if ((currentObject === null || currentObject === void 0 ? void 0 : currentObject.name) === "".concat(fileName, ".mp4")) {
-        return currentObject;
-      }
-    }
-  };
-  var clipToInsert = findFistProjectItem(app.project.rootItem.children);
-  var videoTrack = seq.videoTracks[insertIntoTrack];
-  videoTrack.insertClip(clipToInsert, 0);
+var example = function example(path, fileName, isAudio) {
+  // const filePath = isAudio?  `${path}/${fileName}.mp3` : `${path}/${fileName}.mp4`;
+  var filePath = "".concat(path, "/").concat(fileName, ".mp4");
+  app.project.importFiles([filePath], false, app.project.rootItem);
+  var numChildren = app.project.rootItem.children.numItems;
+  var lastItem = app.project.rootItem.children[numChildren - 1];
+  app.project.activeSequence.videoTracks[0].insertClip(lastItem, 0);
 };
 
 var ppro = /*#__PURE__*/__objectFreeze({
