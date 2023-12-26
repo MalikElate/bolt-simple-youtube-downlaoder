@@ -1,5 +1,4 @@
 const ytdl = require('ytdl-core');
-const fs = require('fs');
 import { useState } from 'react';
 import {
     evalTS,
@@ -11,10 +10,8 @@ const Main = () => {
     const [folderPath, setFolderPath] = useState("/Users/malik/Desktop");
     const [folderPathVisible, setFolderPathVisible] = useState("none");
     const [loaderVisisble, setloaderVisisble] = useState("none");
-    
     const [url, setUrl] = useState("");
     const fs = require('fs');
-
 
     const handleDownload = () => {
         alert(url)
@@ -23,27 +20,21 @@ const Main = () => {
         const fixedUrl = `https://www.youtube.com/watch\?v\=${id}`;
         setloaderVisisble("block");
         ytdl.getInfo(id).then((info: any) => {
-            // Specify the file path
-            // Create a writable stream for the file
             const writableStream = fs.createWriteStream(`${folderPath}/output4.json`);
-
-            // Example data to be written to the file
             const data = JSON.stringify(info.formats);
-
-            // Pipe the data into the writable stream
             writableStream.write(data);
-
-            // Close the writable stream
             writableStream.end();
+
             const fileName: string = info.videoDetails.title.split('').filter((char: any) => ![' ', "'", '/', '\\'].includes(char)).join('');
-            let itag: number = 0; 
+            let itag: number = 0;
+            let format;
             // loop throught the formats and check if the format.itag is 137 or 22 if it is set itag to that format.itag
             for (let i = 0; i < info.formats.length; i++) {
                 if (info.formats[i].itag === 137 || info.formats[i].itag === 22) {
                     itag = info.formats[i].itag;
+                    format = info.formats[i];
                 }
             }
-            alert(itag);
             // if (isAudio) {
             //     (function (next) {
             //         alert("audio")
@@ -55,19 +46,17 @@ const Main = () => {
             //         evalTS("example", folderPath, fileName, isAudio)
             //     }));
             // } else {
-            (function (next) {
-                // ytdl(fixedUrl, { format: "videoandaudio" }).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`))
-                // ytdl(fixedUrl, {filter: (format: any) => format.mimeType.includes("video/mp4; codecs=\"avc1.42001E\"") }).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`))
-                if(itag === 0) {
-                    alert("no itag")
-                    return;
-                } else {
-                    ytdl(fixedUrl, {filter: (format: any) => format.itag === itag}).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`))
-                }
-                next()
-            }(function () {
-                evalTS("example", folderPath, fileName, isAudio)
-            }));
+            if (itag === 0) {
+                alert("no itag")
+                return;
+            }
+            if (format) {
+                let bool = `${format.hasAudio}`
+                alert(`jit has audio ${bool}`); 
+                // ytdl(fixedUrl, { filter: (format: any) => format.itag === itag }).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`)).on("finish", () => {
+                //     evalTS("example", folderPath, fileName, isAudio)
+                // })
+            }
             // }
         }).then(() => {
             setloaderVisisble("none");
@@ -118,4 +107,5 @@ const Main = () => {
         </div>
     );
 };
+
 export default Main;

@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@esTypes/*": ["./src/jsx"]
-    }
+    }, 
   },
   "include": ["./src"],
   "exclude": ["./src/jsx"]
