@@ -14,9 +14,7 @@ const Main = () => {
     const fs = require('fs');
 
     const handleDownload = () => {
-        alert(url)
         const { id } = getVideoId(url);
-        alert(id)
         const fixedUrl = `https://www.youtube.com/watch\?v\=${id}`;
         setloaderVisisble("block");
         ytdl.getInfo(id).then((info: any) => {
@@ -24,10 +22,10 @@ const Main = () => {
             const data = JSON.stringify(info.formats);
             writableStream.write(data);
             writableStream.end();
-
             const fileName: string = info.videoDetails.title.split('').filter((char: any) => ![' ', "'", '/', '\\'].includes(char)).join('');
             let itag: number = 0;
             let format;
+
             // loop throught the formats and check if the format.itag is 137 or 22 if it is set itag to that format.itag
             for (let i = 0; i < info.formats.length; i++) {
                 if (info.formats[i].itag === 137 || info.formats[i].itag === 22) {
@@ -46,18 +44,17 @@ const Main = () => {
             //         evalTS("example", folderPath, fileName, isAudio)
             //     }));
             // } else {
-            if (itag === 0) {
-                alert("no itag")
+            if (itag === 0 || !format) {
+                alert("error invalid itag")
                 return;
             }
-            if (format) {
-                let bool = `${format.hasAudio}`
-                alert(`jit has audio ${bool}`); 
-                // ytdl(fixedUrl, { filter: (format: any) => format.itag === itag }).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`)).on("finish", () => {
-                //     evalTS("example", folderPath, fileName, isAudio)
-                // })
+            if (!format.hasAudio) {
+                alert("error video has no audio");
+            } else {
+                ytdl(fixedUrl, { filter: (format: any) => format.itag === itag }).pipe(fs.createWriteStream(`${folderPath}/${fileName}.mp4`)).on("finish", () => {
+                    evalTS("example", folderPath, fileName, isAudio)
+                })
             }
-            // }
         }).then(() => {
             setloaderVisisble("none");
         });

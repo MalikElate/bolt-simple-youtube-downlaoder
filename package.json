@@ -12,12 +12,12 @@
     "delsymlink": "cross-env ACTION=delsymlink vite"
   },
   "dependencies": {
+    "@types/node": "^15.0.3",
+    "ffmpeg-static": "^5.2.0",
     "get-video-id": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ytdl-core": "^4.11.5",
-    "ytdl-core-muxer": "^1.0.1", 
-    "@types/node": "^15.0.3"
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
